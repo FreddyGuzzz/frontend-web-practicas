@@ -1,0 +1,20 @@
+<header class="encabezado">
+  <h1>Gestión de Clases</h1>
+  <div class="metricas">
+    <span>Clases activas: {{ cantidadClases }}</span>
+    <span>Total semanal: {{ totalMinutos }} min</span>
+    <span>De 60 min o más: {{ cantidadLargas }}</span>
+  </div>
+  <div class="controles">
+    <button type="button" (click)="limpiarLista()">Limpiar lista</button>
+    <button type="button" (click)="cargarLista()">Cargar catálogo</button>
+  </div>
+</header>
+
+<main class="grid-clases">
+  @for (clase of listaClases; track clase.id) {
+    <app-tarjeta-clase [item]="clase" />
+  } @empty {
+    <p class="estado-vacio">No hay clases registradas por el momento.</p>
+  }
+</main>

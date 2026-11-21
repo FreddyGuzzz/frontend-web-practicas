@@ -1,0 +1,42 @@
+.encabezado {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #1e293b;
+  color: #f8fafc;
+}
+
+.metricas {
+  display: flex;
+  gap: 20px;
+  font-weight: 600;
+}
+
+.controles button {
+  margin-left: 8px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.grid-clases {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 24px;
+}
+
+.estado-vacio {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #64748b;
+  margin-top: 40px;
+}

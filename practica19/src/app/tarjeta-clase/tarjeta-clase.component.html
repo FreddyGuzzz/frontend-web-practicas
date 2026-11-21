@@ -1,0 +1,12 @@
+<article class="card-clase">
+  <img [src]="'img/' + item().portada" [alt]="item().titulo">
+  <div class="card-cuerpo">
+    <h3>{{ item().titulo }}</h3>
+    <p class="descripcion">{{ item().detalle }}</p>
+    <p><strong>Área:</strong> {{ item().area }}</p>
+    <p><strong>Duración:</strong> {{ item().minutos }} min</p>
+  </div>
+  @if (item().minutos >= 60) {
+    <span class="badge-duracion">Sesión larga</span>
+  }
+</article>

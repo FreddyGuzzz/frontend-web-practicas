@@ -1,0 +1,40 @@
+.card-clase {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+  padding: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-clase img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card-cuerpo h3 {
+  margin: 4px 0;
+  color: #0f172a;
+}
+
+.descripcion {
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.badge-duracion {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: #0284c7;
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
