@@ -1,0 +1,61 @@
+<header class="barra">
+  <div class="barra__interior">
+    <span class="barra__marca">
+      <img src="/logo.svg" alt="" /> Arena Fit
+      <span class="barra__etiqueta">Panel</span>
+    </span>
+  </div>
+</header>
+
+<main class="pagina">
+  <div class="encabezado">
+    <div>
+      <h1>Catálogo de clases</h1>
+      <p>Datos locales · Práctica 20</p>
+    </div>
+  </div>
+
+  <section class="resumen">
+    <div class="resumen__dato">
+      <span class="resumen__numero">{{ servicioCatalogo.clasesFiltradas().length }}</span>
+      <span class="resumen__texto">clases mostradas</span>
+    </div>
+    <div class="resumen__dato">
+      <span class="resumen__numero">{{ servicioCatalogo.totalMinutos() }}</span>
+      <span class="resumen__texto">minutos semanales</span>
+    </div>
+  </section>
+
+  <app-filtro-categoria />
+
+  <div class="tablero">
+    <div class="rejilla">
+      @for (item of servicioCatalogo.clasesFiltradas(); track item.id) {
+        <app-tarjeta-clase
+          [clase]="item"
+          [activa]="item.id === servicioCatalogo.claseActiva()?.id"
+          (seleccionar)="servicioCatalogo.alternarSeleccion($event)" />
+      } @empty {
+        <p class="vacio">No se encontraron clases para esta categoría.</p>
+      }
+    </div>
+
+    <aside class="tarjeta lateral">
+      @if (servicioCatalogo.claseActiva(); as detalle) {
+        <img [src]="detalle.imagen" [alt]="detalle.nombre" />
+        <h2>{{ detalle.nombre }}</h2>
+        <p>{{ detalle.descripcion }}</p>
+        <div class="dato">
+          <span class="dato__clave">Categoría</span>
+          <span class="dato__valor">{{ detalle.categoria | titlecase }}</span>
+        </div>
+        <div class="dato">
+          <span class="dato__clave">Duración</span>
+          <span class="dato__valor">{{ detalle.duracionMin }} min</span>
+        </div>
+      } @else {
+        <p class="vacio">Selecciona una clase para consultar su detalle.</p>
+      }
+    </aside>
+  </div>
+</main>

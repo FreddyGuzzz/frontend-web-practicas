@@ -1,0 +1,68 @@
+import type { Clase } from '../modelos/clase';
+
+export const CLASES_LOCALES: Clase[] = [
+  {
+    id: 1,
+    nombre: 'Fuerza total',
+    categoria: 'fuerza',
+    duracionMin: 60,
+    imagen: '/img/clase-01.jpg',
+    descripcion: 'Circuito de cuerpo completo con barra y mancuernas adaptado al nivel de cada participante.',
+  },
+  {
+    id: 2,
+    nombre: 'Ciclismo indoor',
+    categoria: 'cardio',
+    duracionMin: 45,
+    imagen: '/img/clase-02.jpg',
+    descripcion: 'Sesión de resistencia cardiovascular sobre bicicleta con cambios de ritmo guiados.',
+  },
+  {
+    id: 3,
+    nombre: 'Yoga y movilidad',
+    categoria: 'flexibilidad',
+    duracionMin: 50,
+    imagen: '/img/clase-03.jpg',
+    descripcion: 'Rutina enfocada en control respiratorio, postura y rango articular.',
+  },
+  {
+    id: 4,
+    nombre: 'Boxeo recreativo',
+    categoria: 'cardio',
+    duracionMin: 60,
+    imagen: '/img/clase-04.jpg',
+    descripcion: 'Fundamentos de golpeo, desplazamiento y acondicionamiento físico sin contacto.',
+  },
+  {
+    id: 5,
+    nombre: 'Kettlebell',
+    categoria: 'fuerza',
+    duracionMin: 45,
+    imagen: '/img/clase-05.jpg',
+    descripcion: 'Trabajo balístico y de estabilidad con pesa rusa priorizando la técnica.',
+  },
+  {
+    id: 6,
+    nombre: 'Salto y coordinación',
+    categoria: 'cardio',
+    duracionMin: 40,
+    imagen: '/img/clase-06.jpg',
+    descripcion: 'Intervalos de agilidad con cuerda y escalera para mejorar velocidad y resistencia.',
+  },
+  {
+    id: 7,
+    nombre: 'Caminadora guiada',
+    categoria: 'cardio',
+    duracionMin: 30,
+    imagen: '/img/clase-07.jpg',
+    descripcion: 'Bloques progresivos de inclinación y paso controlado por el instructor.',
+  },
+  {
+    id: 8,
+    nombre: 'Rehabilitación activa',
+    categoria: 'flexibilidad',
+    duracionMin: 50,
+    imagen: '/img/clase-08.jpg',
+    descripcion: 'Ejercicios de bajo impacto orientados a recuperación muscular y movilidad segura.',
+  },
+];
