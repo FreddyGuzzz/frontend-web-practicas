@@ -9,8 +9,11 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { Publico } from '../auth/decoradores/publico.decorator';
+import { Roles } from '../auth/decoradores/roles.decorator';
+import { Rol } from '../auth/dominio/usuario';
 import { ClasesService } from './clases.service';
 import { CrearClaseDto } from './dto/crear-clase.dto';
 import { ActualizarClaseDto } from './dto/actualizar-clase.dto';
@@ -19,19 +22,15 @@ import { ActualizarClaseDto } from './dto/actualizar-clase.dto';
 export class ClasesController {
   constructor(private readonly clasesService: ClasesService) {}
 
-  /** GET /clases */
-  @Publico() // el catalogo lo ve cualquiera, sin cuenta
+  @Publico()
   @Get()
-  listar() {
-    return this.clasesService.listar();
+  listar(@Query('q') q?: string) {
+    return this.clasesService.listar(q);
   }
 
-  /** GET /clases/2 */
   @Publico()
   @Get(':id')
   async buscar(@Param('id', ParseIntPipe) id: number) {
-    // Regresa la clase con sus horarios y lugares libres.
-    // ParseIntPipe: /clases/abc responde 400, no un 500 de Prisma.
     const clase = await this.clasesService.buscarConHorarios(id);
     if (!clase) {
       throw new NotFoundException(`No existe la clase ${id}`);
@@ -39,14 +38,14 @@ export class ClasesController {
     return clase;
   }
 
-  /** POST /clases */
+  @Roles(Rol.admin)
   @Post()
   @HttpCode(201)
   crear(@Body() dto: CrearClaseDto) {
     return this.clasesService.crear(dto);
   }
 
-  /** PATCH /clases/2 */
+  @Roles(Rol.admin)
   @Patch(':id')
   async actualizar(@Param('id') id: string, @Body() dto: ActualizarClaseDto) {
     const clase = await this.clasesService.actualizar(Number(id), dto);
@@ -56,7 +55,7 @@ export class ClasesController {
     return clase;
   }
 
-  /** DELETE /clases/2 */
+  @Roles(Rol.admin)
   @Delete(':id')
   async eliminar(@Param('id') id: string) {
     const clase = await this.clasesService.eliminar(Number(id));

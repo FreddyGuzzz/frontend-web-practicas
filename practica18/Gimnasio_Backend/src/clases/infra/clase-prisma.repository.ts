@@ -5,21 +5,21 @@ import { CrearClaseDto } from '../dto/crear-clase.dto';
 import { ActualizarClaseDto } from '../dto/actualizar-clase.dto';
 import { PrismaService } from '../../prisma/prisma.service';
 
-// Implementa ClaseRepository con Prisma (MySQL).
 @Injectable()
 export class ClasePrismaRepository implements ClaseRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  listar(): Promise<Clase[]> {
-    return this.prisma.clase.findMany();
+  listar(q?: string): Promise<Clase[]> {
+    return this.prisma.clase.findMany({
+      where: q ? { nombre: { contains: q } } : undefined,
+      orderBy: { id: 'asc' },
+    });
   }
 
   buscarPorId(id: number): Promise<Clase | null> {
     return this.prisma.clase.findUnique({ where: { id } });
   }
 
-  // Una sola consulta: los horarios de la clase y, en cada uno,
-  // cuantas inscripciones CONFIRMADAS tiene (_count).
   async buscarConHorarios(id: number): Promise<ClaseConHorarios | null> {
     const clase = await this.prisma.clase.findUnique({
       where: { id },

@@ -12,8 +12,9 @@ export class ClasesService {
     private readonly repo: ClaseRepository,
   ) {}
 
-  listar(): Promise<Clase[]> {
-    return this.repo.listar();
+  listar(q?: string): Promise<Clase[]> {
+    const texto = q?.trim();
+    return this.repo.listar(texto || undefined);
   }
 
   buscar(id: number): Promise<Clase | null> {
